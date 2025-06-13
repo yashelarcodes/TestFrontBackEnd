@@ -1,10 +1,12 @@
 document.getElementById("contact-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  
+
   const form = e.target;
   const formData = new FormData(form);
 
-  fetch("https://sheetdb.io/api/v1/https://sheetdb.io/api/v1/d1s0j6amg7xgd", {
+  console.log("Form data being sent:", [...formData.entries()]);
+
+  fetch("https://sheetdb.io/api/v1/d1s0j6amg7xgd", {
     method: "POST",
     body: formData
   })
@@ -14,6 +16,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     form.reset();
   })
   .catch(err => {
+    console.error("Error details:", err);
     document.getElementById("response").textContent = "Submission failed.";
   });
 });
